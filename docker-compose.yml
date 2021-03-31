@@ -1,0 +1,74 @@
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins
+    build:
+      # subfolder to look for eg. Dockerfile,...
+      context: jenkins
+    ports:
+      # map "host:container"
+      - "8080:8080"
+    volumes:
+      # files modified in one folder will modify same file in other folder
+      - "$PWD/jenkins/jenkins_home:/var/jenkins_home"
+      - "$PWD/remote-key:/tmp/remote-key"
+    networks:
+      - net
+  remote_host:
+    container_name: remote_host
+    image: remote_host
+    build:
+      context: remote_host
+    networks:
+      - net
+    volumes:
+      - "$PWD/remote-key.pub:/home/remote_user/.ssh/authorized_keys"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+# from https://github.com/SeleniumHQ/docker-selenium/tree/selenium-3
+  selenium-hub:
+    image: selenium/hub:3.141.59-20210311
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      # in milliseconds
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=600000
+      # in seconds
+      # wait for working code
+      - GRID_BROWSER_TIMEOUT=600
+      # wait when nothing happens
+      - GRID_TIMEOUT=60
+
+  chrome:
+    image: selenium/node-chrome:3.141.59-20210311
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+  firefox:
+    image: selenium/node-firefox:3.141.59-20210311
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+  opera:
+    image: selenium/node-opera:3.141.59-20210311
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+networks:
+  net:
