@@ -5,7 +5,7 @@
 * Ziele des Kurses
 * Tour durch den finalen Aufbau
 
-## Einteilung
+## Einteilung des Kurses
 * Installation und Einrichtung von:
   * WSL2
   * Docker
