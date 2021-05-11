@@ -1,7 +1,6 @@
 FROM ubuntu:latest
 
 # SSH install
-# https://hub.docker.com/r/picoded/ubuntu-openjdk-8-jdk/dockerfile/
 RUN apt-get update && apt-get install -y openssh-server
 
 RUN useradd remote_user && \
@@ -12,6 +11,8 @@ RUN useradd remote_user && \
 
 RUN chown remote_user:remote_user   -R /home/remote_user
 
+# Java 8 install
+# https://hub.docker.com/r/picoded/ubuntu-openjdk-8-jdk/dockerfile/
 # This is in accordance to : https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
 RUN apt-get install -y openjdk-8-jdk && \
 	apt-get install -y ant && \
