@@ -15,16 +15,16 @@ services:
       - "$PWD/remote-key:/tmp/remote-key"
     networks:
       - net
-  remote_host:
-    container_name: remote_host
-    image: remote_host
+  remote_client:
+    container_name: remote_client
+    image: remote_client
     build:
-      context: remote_host
-    networks:
-      - net
+      context: remote_client
     volumes:
       - "$PWD/remote-key.pub:/home/remote_user/.ssh/authorized_keys"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "$PWD/remote_client/home:/home/remote_user"
+    networks:
+      - net
 
 # from https://github.com/SeleniumHQ/docker-selenium/tree/selenium-3
   selenium-hub:
