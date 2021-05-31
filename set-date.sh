@@ -1,5 +1,5 @@
-# in your bashrc, zshrc or equivalent, call the script sh ~/tutorial/set-date.sh
-# ~/tutorial/set-date.sh
+# in your bashrc, zshrc or equivalent, call the script sh ~/docker-tutorial/set-date.sh
+# ~/docker-tutorial/set-date.sh
 
 # Get time from google server or some other reliable source
 TIME_FROM_SERVER=$(curl -v --insecure --silent https://google.de/ 2>&1 | grep Date | sed -e 's/< Date: //');
