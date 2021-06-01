@@ -38,4 +38,6 @@ RUN apt-get install python3-pip -y
 RUN pip3 install selenium
 RUN pip3 install -U pytest
 
+RUN chmod 777 /home/remote_user
+
 CMD /usr/sbin/sshd -D
