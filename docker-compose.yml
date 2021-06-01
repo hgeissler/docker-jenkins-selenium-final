@@ -9,7 +9,7 @@ services:
       - "8080:8080"
     volumes:
       - "$PWD/jenkins/jenkins_home:/var/jenkins_home"
-      - "$PWD/remote-key:/var/jenkins_home/remote-key"
+      - "$PWD/remote-key:/tmp/remote-key"
     networks:
       - net
   remote_client:
@@ -19,7 +19,7 @@ services:
       context: remote_client
     volumes:
       - "$PWD/remote-key.pub:/home/remote_user/.ssh/authorized_keys"
-      - "$PWD/remote_client/home:/home/remote_user"
+      - "$PWD/remote_client/selenium:/home/remote_user/selenium"
     networks:
       - net
   standalone_firefox:
