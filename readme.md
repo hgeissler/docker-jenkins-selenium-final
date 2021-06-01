@@ -1,7 +1,7 @@
 # Docker-Jenkins-Selenium Tutorial
 
 ## Youtube-Kurs:
--- [: Docker - Jenkins - Selenium](https://youtu.be/V5qiY_abz-g)
+- [Docker - Jenkins - Selenium](https://youtu.be/V5qiY_abz-g)
 
 ## Einteilung des Kurses
 * Installation und Einrichtung von:
