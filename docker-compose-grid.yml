@@ -70,7 +70,7 @@ services:
       # wait for working code
       - GRID_BROWSER_TIMEOUT=600
       # wait when nothing happens
-  - GRID_TIMEOUT=60
+      - GRID_TIMEOUT=60
     networks: 
       - net
 networks: 
